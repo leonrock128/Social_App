@@ -18,6 +18,8 @@ const httpServer = require('http').createServer(app)
 const io = require('socket.io')(httpServer, {
   cors: {
     origin: ['http://localhost:3000', 'https://social-app-three-chi.vercel.app/'],
+    methods: ['GET', 'POST'],
+    credentials: true,
   },
 })
 
@@ -32,9 +34,19 @@ mongoose.connect(
   }
 )
 
+// ✅ CORS middleware for Express routes
+app.use(express.json());
+app.use(
+  cors({
+    origin: [
+      'http://localhost:3000',
+      'https://social-app-three-chi.vercel.app',
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
+  })
+);
 
-app.use(express.json())
-app.use(cors())
 app.use('/api/posts', posts)
 app.use('/api/users', users)
 app.use('/api/comments', comments)
