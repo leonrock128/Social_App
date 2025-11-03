@@ -32,9 +32,6 @@ mongoose.connect(
   }
 )
 
-httpServer.listen(process.env.PORT || 4000, () => {
-  console.log('Listening')
-})
 
 app.use(express.json())
 app.use(cors())
@@ -43,10 +40,13 @@ app.use('/api/users', users)
 app.use('/api/comments', comments)
 app.use('/api/messages', messages)
 
-if (process.env.NODE_ENV == 'production') {
-  app.use(express.static(path.join(__dirname, '/client/build')))
+const PORT = process.env.PORT || 4000;
+httpServer.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
-  })
-}
+// if (process.env.NODE_ENV == 'production') {
+//   app.use(express.static(path.join(__dirname, '/client/build')))
+
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
+//   })
+// }
