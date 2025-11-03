@@ -9,7 +9,7 @@ const Footer = () => {
       <Card>
         <Typography variant="subtitle1">
           Don't forget to star the{" "}
-          <a href=""
+          <a href="https://github.com/leonrock128/Social_App"
             target="_blank"
           >
             Repo
