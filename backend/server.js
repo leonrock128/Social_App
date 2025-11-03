@@ -17,7 +17,7 @@ dotenv.config()
 const httpServer = require('http').createServer(app)
 const io = require('socket.io')(httpServer, {
   cors: {
-    origin: ['http://localhost:3000', 'https://social-app-three-chi.vercel.app/'],
+    origin: ['http://localhost:3000', 'https://social-app-three-chi.vercel.app'],
     methods: ['GET', 'POST'],
     credentials: true,
   },
