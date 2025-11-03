@@ -8,6 +8,8 @@ export const initiateSocketConnection = () => {
   const user = isLoggedIn();
 
   socket = io(BASE_URL, {
+    withCredentials: true,
+    transports: ["websocket"], 
     auth: {
       token: user && user.token,
     },
